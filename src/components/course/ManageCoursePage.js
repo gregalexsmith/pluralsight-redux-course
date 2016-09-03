@@ -17,6 +17,13 @@ class ManageCoursePage extends React.Component {
     this.saveCourse = this.saveCourse.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.initalCourse.id != nextProps.initalCourse.id) {
+      //Necessary to populate form when existing course is loaded directly
+      this.setState({course: Object.assign({}, nextProps.initalCourse)});
+    }
+  }
+
   updateCourseState(event) {
     const field = event.target.name;
     let course = this.state.course;
@@ -50,11 +57,21 @@ ManageCoursePage.propTypes = {
 
 ManageCoursePage.contextTypes = {
   router: PropTypes.object
+};
+
+function getCourseById(courses, id) {
+  const course = courses.filter(course => course.id == id);
+  if(course.length > 0) return course[0]; // [0] since filter returns an array
+  return null;
 }
 
 function mapStateToProps(state, ownProps) {
+  const courseId = ownProps.params.id;  // from the path '/course/:id'
   let initalCourse = {id:'', watchHref:'', title:'', authorId:'', length:'', category:''};
 
+  if (courseId && state.courses.length > 0) {
+    initalCourse = getCourseById(state.courses, courseId);
+  }
   const authorsFormattedForDropdown = state.authors.map(author => {
     return {
       value: author.id,
