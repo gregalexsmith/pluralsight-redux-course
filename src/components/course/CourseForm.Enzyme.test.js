@@ -8,9 +8,9 @@ function setup(saving) {
     course: {}, saving: saving, errors: {},
     onSave: () => {},
     onChange: () => {}
-  }
+  };
 
-  return shallow(<CourseForm {...props} />)
+  return shallow(<CourseForm {...props} />);
 }
 describe('CourseForm via Enzyme', () => {
   it('renders form and h1', () => {
@@ -28,4 +28,4 @@ describe('CourseForm via Enzyme', () => {
     const wrapper = setup(true);
     expect(wrapper.find('input').props().value).toBe('Saving...');
   });
-})
+});

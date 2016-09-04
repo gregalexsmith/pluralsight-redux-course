@@ -11,7 +11,7 @@ describe('Course Actions', () => {
   describe('createCourseSuccess', () => {
     it('should create a CREATE_COURSE_SUCCESS action', () => {
       //arrange
-      const course = {id: 'clean-code', title: 'Clean Code'}
+      const course = {id: 'clean-code', title: 'Clean Code'};
       const expectedAction = {
         type: types.CREATE_COURSE_SUCCESS,
         course: course
@@ -21,8 +21,8 @@ describe('Course Actions', () => {
       //assert
       expect(action).toEqual(expectedAction);
     });
-  })
-})
+  });
+});
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -30,7 +30,7 @@ const mockStore = configureMockStore(middleware);
 describe('Async Actions', () => {
   afterEach( () => {
     nock.cleanAll();
-  })
+  });
 
   it('should create BEGIN_AJAX_CALL and LOAD_COURSES_SUCCESS when loading courses', (done) => {
     // Here's an example call to nock.
@@ -49,7 +49,7 @@ describe('Async Actions', () => {
       expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
       expect(actions[1].type).toEqual(types.LOAD_COURSES_SUCCESS);
       done();
-    })
+    });
 
   });
 });

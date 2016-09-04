@@ -17,7 +17,7 @@ function setup(saving) {
     props,
     output,
     renderer
-  }
+  };
 }
 
 describe('CourseForm via React Test Utils', () => {
@@ -38,5 +38,5 @@ describe('CourseForm via React Test Utils', () => {
     const { output } = setup(true);
     const submitButton = output.props.children[5];
     expect(submitButton.props.value).toBe('Saving...');
-  })
+  });
 });
