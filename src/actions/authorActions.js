@@ -1,5 +1,6 @@
 import authorApi from '../api/mockAuthorApi.js';
 import * as types from './actionTypes';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 // this is the redux action funcion...must return an action type and pass to dispatch that calls it
 export function loadAuthorsSuccess(authors) {
@@ -12,6 +13,7 @@ export function loadAuthorsSuccess(authors) {
 // this is the API call funciton..
 export function loadAuthors() {
   return function(dispatch) {
+    dispatch(beginAjaxCall());
     return authorApi.getAllAuthors().then(authors => {
       dispatch(loadAuthorsSuccess(authors));
     }).catch(error => {
